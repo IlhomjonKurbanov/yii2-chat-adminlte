@@ -1,23 +1,17 @@
 <?php
 
-/**
- * @link https://github.com/sintret/yii2-chat-adminlte
- * @copyright Copyright (c) 2014 Andy fitria
- * @license MIT
- */
-
-namespace sintret\chat;
+namespace ptiuma\chat;
 
 use Yii;
 use yii\base\Widget;
-use sintret\chat\models\Chat;
+use ptiuma\chat\models\Chat;
 
 /**
- * @author Andy Fitria <sintret@gmail.com>
+ * @author Andy Fitria <ptiuma@gmail.com>
  */
 class ChatRoom extends Widget {
 
-    public $sourcePath = '@vendor/sintret/yii2-chat-adminlte/assets';
+    public $sourcePath = '@vendor/ptiuma/yii2-chat-adminlte/assets';
     public $css = [
     ];
     public $js = [ // Configured conditionally (source/minified) during init()
@@ -45,7 +39,7 @@ class ChatRoom extends Widget {
         }
 
         $this->model->userField = $this->userField;
-        Yii::$app->assetManager->publish("@vendor/sintret/yii2-chat-adminlte/assets/img/avatar.png");
+        Yii::$app->assetManager->publish("@vendor/ptiuma/yii2-chat-adminlte/assets/img/avatar.png");
 
         parent::init();
     }
@@ -75,7 +69,7 @@ class ChatRoom extends Widget {
         else
             $userModel = Yii::$app->getUser()->identityClass;
 
-        $model = new \sintret\chat\models\Chat;
+        $model = new \ptiuma\chat\models\Chat;
         $model->userModel = $userModel;
         if ($userField)
             $model->userField = $userField;

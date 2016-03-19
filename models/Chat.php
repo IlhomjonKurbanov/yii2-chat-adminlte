@@ -1,6 +1,6 @@
 <?php
 
-namespace sintret\chat\models;
+namespace ptiuma\chat\models;
 
 use Yii;
 
@@ -74,7 +74,7 @@ class Chat extends \yii\db\ActiveRecord {
                 } else{
                     $avatar = Yii::$app->assetManager->getPublishedUrl("@vendor/sintret/yii2-chat-adminlte/assets/img/avatar.png");
                 }
-                    
+
                 $output .= '<div class="item">
                 <img class="online" alt="user image" src="' . $avatar . '">
                 <p class="message">
