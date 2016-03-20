@@ -12,6 +12,9 @@ use yii\web\AssetBundle;
 class ChatJs extends AssetBundle {
 
     public $sourcePath = '@vendor/ptiuma/yii2-chat-adminlte/assets';
+     public $css = [
+    'css/chat.css',
+    ];
     public $js = [
         'js/chat.js',
     ];

@@ -13,6 +13,7 @@ class ChatRoom extends Widget {
 
     public $sourcePath = '@vendor/ptiuma/yii2-chat-adminlte/assets';
     public $css = [
+    //'css/chat.css',
     ];
     public $js = [ // Configured conditionally (source/minified) during init()
         'js/chat.js',
@@ -22,23 +23,11 @@ class ChatRoom extends Widget {
     ];
     public $models;
     public $url;
-    public $userModel;
-    public $userField;
+    public $chatId;
     public $model;
 
     public function init() {
         $this->model = new Chat();
-        if ($this->userModel === NULL) {
-            $this->userModel = Yii::$app->getUser()->identityClass;
-        }
-
-        $this->model->userModel = $this->userModel;
-
-        if ($this->userField === NULL) {
-            $this->userField = 'avatarImage';
-        }
-
-        $this->model->userField = $this->userField;
         Yii::$app->assetManager->publish("@vendor/ptiuma/yii2-chat-adminlte/assets/img/avatar.png");
 
         parent::init();
@@ -48,37 +37,33 @@ class ChatRoom extends Widget {
         parent::init();
         ChatJs::register($this->view);
         $model = new Chat();
-        $model->userModel = $this->userModel;
-        $model->userField = $this->userField;
+        $model->chatId = $this->chatId;
         $data = $model->data();
         return $this->render('index', [
                     'data' => $data,
                     'url' => $this->url,
-                    'userModel' => $this->userModel,
-                    'userField' => $this->userField,
+                    'chatId' => $this->chatId,
         ]);
     }
 
     public static function sendChat($post) {
         if (isset($post['message']))
             $message = $post['message'];
-        if (isset($post['userfield']))
-            $userField = $post['userfield'];
-        if (isset($post['model']))
-            $userModel = $post['model'];
-        else
-            $userModel = Yii::$app->getUser()->identityClass;
+        if (isset($post['chatid']))
+            $chatId = $post['chatid'];
 
         $model = new \ptiuma\chat\models\Chat;
-        $model->userModel = $userModel;
-        if ($userField)
-            $model->userField = $userField;
-
+            $model->chatId=$chatId;
+             $model->Hash_code=$post['sessionid'];
         if ($message) {
             $model->message = $message;
-            $model->userId = Yii::$app->user->id;
+            $model->sendTo=$model->view->link->user->telegram->chat_id;
 
-            if ($model->save()) {
+            if ($model->save()) {            	$msg="Пользователь прислал сообщение № ".$model->id." \n";
+            	$msg.="Текст: ";
+            	$msg.=$model->message;
+            	$msg.="\n Для ответа введите /answer ".$model->id." ваш_ответ ";
+               \Yii::$app->bot->sendMessage($model->sendTo, $msg);
                 echo $model->data();
             } else {
                 print_r($model->getErrors());
@@ -88,5 +73,8 @@ class ChatRoom extends Widget {
             echo $model->data();
         }
     }
+      public static function send2Telegram($model) {
 
+
+    }
 }
