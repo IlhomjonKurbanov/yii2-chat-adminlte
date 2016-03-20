@@ -3,7 +3,6 @@ function reloadchat(message, clearChat) {
     var url = $(".btn-send-comment").data("url");
     var model = $(".btn-send-comment").data("model");
     var chatid = $(".btn-send-comment").data("chatid");
-    alert(sessionid)
     $.ajax({
         url: url,
         type: "POST",
