@@ -59,10 +59,10 @@ class ChatRoom extends Widget {
             $model->message = $message;
             $model->sendTo=$model->view->link->user->telegram->chat_id;
 
-            if ($model->save()) {            	$msg="Пользователь прислал сообщение № ".$model->id." \n";
+            if ($model->save()) {            	$msg="Пользователь прислал сообщение из чата № ".$model->chatId." \n";
             	$msg.="Текст: ";
             	$msg.=$model->message;
-            	$msg.="\n Для ответа введите /answer ".$model->id." ваш_ответ ";
+            	$msg.="\n Для ответа введите /chat ".$model->chatId." ваш_ответ ";
                \Yii::$app->bot->sendMessage($model->sendTo, $msg);
                 echo $model->data();
             } else {

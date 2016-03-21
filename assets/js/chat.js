@@ -1,4 +1,17 @@
 var cnt_chat=0;
+    $(function() {
+
+    $("#chat_message").bind('keyup', function(e) {
+        if (e.keyCode == 13) {
+            msg = $("#chat_message").val();
+            if (msg.length > 0) {
+				if(window.whileSending != true){
+	               reloadchat(msg,true)
+				}
+            }
+        }
+    });
+});
 function reloadchat(message, clearChat) {
     var url = $(".btn-send-comment").data("url");
     var model = $(".btn-send-comment").data("model");
