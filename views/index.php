@@ -1,3 +1,9 @@
+<div id="chatPop" class="popover popover-default popover-md bottom bottom-right in" role="dialog" style="">
+<div class="popover-title">
+<i class="glyphicon glyphicon-lock"></i> Telegram - Chat
+</div>
+<div class="popover-content">
+
 <div class="box box-success">
     <div class="box-header ui-sortable-handle" style="cursor: move;">
         <i class="fa fa-comments-o"></i>
@@ -24,3 +30,6 @@
         </div>
     </div>
 </div><!-- /.box (chat box) -->
+</div>
+
+</div>
