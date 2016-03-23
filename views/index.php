@@ -48,8 +48,13 @@
                 </div>
                 <h3><b><?=$model->view->link->user->profile->name?></b></h3>
                 <div>
-                    Телефон: <?=$model->view->link->user->phone?>
+                    Телефон: <?=$model->view->link->user->profile->phone?>
                 </div>
+                <?php if($model->view->link->user->profile->public_email):?>
+                 <div>
+                    Email: <?=$model->view->link->user->profile->public_email?>
+                </div>
+                <?php endif;?>
              <p>
                     Вы можете связаться с Вашим менеджером, позвонив ему или написав ему в телеграм-чат!
                 </p>
