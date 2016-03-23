@@ -33,3 +33,30 @@
 </div>
 
 </div>
+
+
+<div id="main-chat" class="transform chat chat-bottom manager-off chat-open">
+    <div class="chat-header" onclick="headClick()">
+        <span class="">Связаться с менеджером</span>
+        <i class="close-btn">×</i>
+    </div>
+<div id="box-welcome" class="chat-container transform">
+    <div class="main-chat-window message-offline transform-opacity">
+            <div class="chat-manager">
+          <div>
+                    Ваш менеджер
+                </div>
+                <h3><b><?=$model->view->link->user->profile->name?></b></h3>
+                <div>
+                    Телефон: <?=$model->view->link->user->phone?>
+                </div>
+             <p>
+                    Вы можете связаться с Вашим менеджером, позвонив ему или написав ему в телеграм-чат!
+                </p>
+            </div>
+
+    </div>
+</div>
+
+
+</div>

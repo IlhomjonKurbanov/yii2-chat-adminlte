@@ -1,4 +1,15 @@
 var cnt_chat=0;
+; (function($) {
+    $.fn.focusToEnd = function(defaultValue) {
+        return this.each(function() {
+            var prevValue = $(this).val();
+            if (typeof prevValue == undefined || prevValue == "") {
+                prevValue = defaultValue;
+            }
+            $(this).focus().val("").val(prevValue);
+        });
+    };
+})(jQuery)
     $(function() {
 
     $("#chat_message").bind('keyup', function(e) {
@@ -25,8 +36,13 @@ function reloadchat(message, clearChat) {
                 $("#chat_message").val("");
             }
             $("#chat-box").html(html);
+            $("#chat-box").focusToEnd();
         }
     });
+}
+function headClick()
+{ o=$("#main-chat");
+ o.hasClass("chat-hide")?o.removeClass("chat-hide").addClass("chat-open"):o.removeClass("chat-open").addClass("chat-hide");
 }
 /*
 setInterval(function () {

@@ -41,6 +41,7 @@ class ChatRoom extends Widget {
         $data = $model->data();
         return $this->render('index', [
                     'data' => $data,
+                    'model'=> $model,
                     'url' => $this->url,
                     'chatId' => $this->chatId,
         ]);
