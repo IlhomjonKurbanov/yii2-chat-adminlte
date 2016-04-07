@@ -1,15 +1,12 @@
 var cnt_chat=0;
-; (function($) {
-    $.fn.focusToEnd = function(defaultValue) {
-        return this.each(function() {
-            var prevValue = $(this).val();
-            if (typeof prevValue == undefined || prevValue == "") {
-                prevValue = defaultValue;
-            }
-            $(this).focus().val("").val(prevValue);
-        });
-    };
-})(jQuery)
+(function($){
+    $.fn.focusTextToEnd = function(){
+        this.focus();
+        var $thisVal = this.val();
+        this.val('').val($thisVal);
+        return this;
+    }
+}(jQuery));
     $(function() {
 
     $("#chat_message").bind('keyup', function(e) {
@@ -36,7 +33,7 @@ function reloadchat(message, clearChat) {
                 $("#chat_message").val("");
             }
             $("#chat-box").html(html);
-            $("#chat-box").focusToEnd();
+            $("#chat-box").scrollTop(1E10);
         }
     });
 }

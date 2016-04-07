@@ -36,9 +36,9 @@ class ChatRoom extends Widget {
     public function run() {
         parent::init();
         ChatJs::register($this->view);
-        $model = new Chat();
-        $model->chatId = $this->chatId;
-        $data = $model->data();
+        $model =Chat::findOne($this->chatId);
+        if($model->id)$data = $model->data();
+
         return $this->render('index', [
                     'data' => $data,
                     'model'=> $model,
@@ -53,29 +53,28 @@ class ChatRoom extends Widget {
         if (isset($post['chatid']))
             $chatId = $post['chatid'];
 
-        $model = new \ptiuma\chat\models\Chat;
+        $model = new \ptiuma\chat\models\ChatMessages;
             $model->chatId=$chatId;
-             $model->Hash_code=$post['sessionid'];
+            $model->Hash_code=$post['sessionid'];
+              $model->msgTime=time();
         if ($message) {
+           $model->isManager=$model->chat->userId==Yii::$app->user->id?1:0;
             $model->message = $message;
-            $model->sendTo=$model->view->link->user->telegram->chat_id;
+            $model->sendTo=$model->chat->user->telegram->chat_id;
 
-            if ($model->save()) {            	$msg="Пользователь прислал сообщение из чата № ".$model->chatId." \n";
+            if ($model->save()&&$model->sendTo) {            	$msg="Пользователь прислал сообщение из чата № ".$model->chatId." \n";
             	$msg.="Текст: ";
             	$msg.=$model->message;
             	$msg.="\n Для ответа введите /chat ".$model->chatId." ваш_ответ ";
                \Yii::$app->bot->sendMessage($model->sendTo, $msg);
-                echo $model->data();
+                $model->chat->emitChat($model->chatId);
+                echo $model->chat->data();
             } else {
-                print_r($model->getErrors());
-                exit(0);
+                echo $model->chat->data();
             }
         } else {
-            echo $model->data();
+            echo $model->chat->data();
         }
     }
-      public static function send2Telegram($model) {
 
-
-    }
 }
