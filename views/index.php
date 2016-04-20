@@ -1,5 +1,6 @@
 <div id="chatPop" class="popover popover-default popover-md bottom bottom-right in" role="dialog" style="">
 <div class="popover-title">
+<button type="button" class="close" data-dismiss="popover" aria-hidden="true"  onClick="$('#chatPop').toggle();">×</button>
 <i class="glyphicon glyphicon-lock"></i> Telegram - Chat
 </div>
 <div class="popover-content">
@@ -56,7 +57,7 @@
                 </div>
                 <?php endif;?>
              <p>
-                    Вы можете связаться с Вашим менеджером, позвонив ему или написав ему в телеграм-чат!
+                    Вы можете связаться с Вашим менеджером, позвонив ему или написав ему в чат!
                 </p>
             </div>
 

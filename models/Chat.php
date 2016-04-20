@@ -94,7 +94,7 @@ class Chat extends \yii\db\ActiveRecord {
         {
             foreach ($models as $model) {
                  $me=!$model->isManager?1:0;
-                 $name=$me==1?"Вы":"Менеджер";
+                 $name=$me==1?($model->chat->userId==Yii::$app->user->id?"Пользователь":"Вы"):$model->chat->userId==Yii::$app->user->id?"Вы":"Менеджер";
                  $output .= '<div class="direct-chat-msg '.($me==1?'':'right').'">
                   <div class="direct-chat-info clearfix">
                     <span class="direct-chat-name pull-'.($me==1?'left':'right').'"> ' . $name . '</span>
