@@ -215,3 +215,6 @@
 .direct-chat-success .right > .direct-chat-text:before {
   border-left-color: #00a65a;
 }
+#main-chat
+{	z-index:1001;
+}
