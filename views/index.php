@@ -36,7 +36,7 @@
 </div>
 
 
-<div id="main-chat" class="transform chat chat-bottom manager-off chat-open">
+<div id="main-chat" class="transform chat chat-bottom manager-off chat-open text-left">
     <div class="chat-header" onclick="headClick()">
         <span class="">Связаться с менеджером</span>
         <i class="close-btn">×</i>
